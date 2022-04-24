@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cahrusat.sqlitedemodiv1.MainActivity
-import com.cahrusat.sqlitedemodiv1.R
-import kotlinx.android.synthetic.main.card_item_layout.view.*
+import com.example.myapplication1.MainActivity
+import com.example.myapplication1.R
+import kotlinx.android.synthetic.main.card_view.view.*
 import kotlinx.android.synthetic.main.card_view.view.*
 
 
@@ -26,6 +26,18 @@ class FruitAdapter(val context:Context, var arr:ArrayList<fruit>)
     override fun onBindViewHolder(holder: PersonViewHolde, position: Int) {
         holder.bind(arr[position])
 
+        holder.view.imgdelete.setOnClickListener {
+            if(context is Viewall)
+            {
+                context.delete(position)
+            }
+        }
+        holder.view.imgupdate.setOnClickListener{
+
+            if(context is Viewall)
+                context.update(position)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -36,9 +48,10 @@ class FruitAdapter(val context:Context, var arr:ArrayList<fruit>)
     {
         fun bind(p:fruit)
         {
+            //set value of card view
             view.tvname.setText(p.fr_name)
             view.tvdes.setText(p.fr_des)
-            view.tvprice.setText(p.fr_price)
+            view.tvprice.setText(p.fr_price.toString())
 
         }
     }
